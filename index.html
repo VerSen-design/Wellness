@@ -6,64 +6,133 @@
   <title>Имя Фамилия — health coaching</title>
   <style>
     :root {
-      --bg: #f7f5f1;
-      --card: rgba(255,255,255,.82);
-      --text: #25302c;
-      --muted: #64706b;
-      --line: rgba(37,48,44,.08);
-      --accent: #5d766b;
-      --accent-dark: #496056;
-      --shadow: 0 16px 40px rgba(60,72,67,.08);
-      --radius: 22px;
-      --container: 1040px;
-      --speed: .25s ease;
+      --bg: #f5fbf7;
+      --card: rgba(255, 255, 255, 0.8);
+      --text: #22312c;
+      --muted: #5f6f69;
+      --line: rgba(34, 49, 44, 0.08);
+      --emerald: #1f9b7d;
+      --emerald-dark: #177660;
+      --shadow: 0 18px 45px rgba(62, 88, 79, 0.08);
+      --shadow-hover: 0 24px 48px rgba(62, 88, 79, 0.12);
+      --radius: 26px;
+      --container: 1080px;
+      --speed: .28s ease;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
       line-height: 1.6;
+      background:
+        radial-gradient(900px 420px at 8% 10%, rgba(174, 227, 202, 0.55) 0%, rgba(174, 227, 202, 0.28) 34%, rgba(174, 227, 202, 0) 65%),
+        radial-gradient(760px 360px at 92% 12%, rgba(154, 220, 191, 0.5) 0%, rgba(154, 220, 191, 0.22) 35%, rgba(154, 220, 191, 0) 66%),
+        radial-gradient(820px 380px at 18% 82%, rgba(196, 238, 216, 0.55) 0%, rgba(196, 238, 216, 0.24) 36%, rgba(196, 238, 216, 0) 67%),
+        radial-gradient(860px 400px at 88% 80%, rgba(146, 216, 186, 0.46) 0%, rgba(146, 216, 186, 0.2) 34%, rgba(146, 216, 186, 0) 66%),
+        linear-gradient(180deg, #fbfefc 0%, var(--bg) 100%);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
-    .section { padding: 72px 0; }
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.95;
+    }
+
+    body::before {
+      width: 520px;
+      height: 520px;
+      top: -80px;
+      right: -120px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(171, 233, 205, 0.7) 0 16%, transparent 17%),
+        radial-gradient(circle at 28% 44%, rgba(171, 233, 205, 0.48) 0 11%, transparent 12%),
+        radial-gradient(circle at 72% 44%, rgba(171, 233, 205, 0.48) 0 11%, transparent 12%),
+        radial-gradient(circle at 38% 72%, rgba(171, 233, 205, 0.46) 0 11%, transparent 12%),
+        radial-gradient(circle at 62% 72%, rgba(171, 233, 205, 0.46) 0 11%, transparent 12%);
+      transform: rotate(14deg);
+    }
+
+    body::after {
+      width: 480px;
+      height: 480px;
+      left: -120px;
+      bottom: -40px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(186, 238, 214, 0.72) 0 16%, transparent 17%),
+        radial-gradient(circle at 28% 44%, rgba(186, 238, 214, 0.46) 0 11%, transparent 12%),
+        radial-gradient(circle at 72% 44%, rgba(186, 238, 214, 0.46) 0 11%, transparent 12%),
+        radial-gradient(circle at 38% 72%, rgba(186, 238, 214, 0.42) 0 11%, transparent 12%),
+        radial-gradient(circle at 62% 72%, rgba(186, 238, 214, 0.42) 0 11%, transparent 12%);
+      transform: rotate(-18deg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
 
     .header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(247,245,241,.82);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      background: rgba(245, 251, 247, 0.74);
       border-bottom: 1px solid var(--line);
     }
 
     .header-inner {
-      min-height: 72px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
     }
 
-    .brand strong {
-      display: block;
-      font-size: 1rem;
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .brand span,
-    p { color: var(--muted); }
+    .brand strong {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
 
     .nav {
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
-      font-size: .95rem;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
     .nav a {
@@ -75,215 +144,222 @@
       transform: translateY(-1px);
     }
 
-    h1,h2,h3 {
+    h1, h2, h3 {
       margin: 0;
-      font-family: Georgia, serif;
-      line-height: 1.1;
-      letter-spacing: -.02em;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      font-family: inherit;
     }
 
-    h1 { font-size: clamp(2.4rem, 7vw, 4.8rem); margin-bottom: 14px; }
-    h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 14px; }
-    h3 { font-size: 1.28rem; margin-bottom: 10px; }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.7);
-      border: 1px solid var(--line);
-      color: var(--accent-dark);
-      font-size: .9rem;
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      margin-bottom: 16px;
     }
 
-    .hero-grid,
-    .about-grid,
-    .lead-grid,
-    .contact-grid {
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .lead {
+      font-size: clamp(1.08rem, 2vw, 1.22rem);
+      max-width: 720px;
+    }
+
+    .hero,
+    .two-col {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 24px;
       align-items: stretch;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.7);
+      position: relative;
+      padding: 32px;
       border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.86);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      padding: 28px;
+      backdrop-filter: blur(14px);
       transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: auto -50px -50px auto;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(31, 155, 125, 0.1) 0%, transparent 72%);
+      pointer-events: none;
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 22px 44px rgba(60,72,67,.11);
-      border-color: rgba(93,118,107,.18);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(31, 155, 125, 0.16);
     }
 
-    .lead { font-size: 1.08rem; max-width: 680px; }
+    .hero-copy {
+      padding-top: 8px;
+    }
+
+    .hero-copy p + p {
+      margin-top: 12px;
+    }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
-      border: 0;
+      min-height: 54px;
+      padding: 0 24px;
+      margin-top: 26px;
       border-radius: 999px;
-      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background: linear-gradient(180deg, #23b18e 0%, var(--emerald) 100%);
       color: #fff;
       font-weight: 600;
-      box-shadow: 0 14px 28px rgba(73,96,86,.2);
-      transition: transform var(--speed), box-shadow var(--speed);
-      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(31, 155, 125, 0.22);
+      transition: transform var(--speed), box-shadow var(--speed), filter var(--speed);
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 32px rgba(73,96,86,.24);
+      box-shadow: 0 22px 34px rgba(31, 155, 125, 0.28);
+      filter: saturate(1.04);
     }
 
-    .list,
+    .compact-list,
     .services,
-    .results {
+    .docs,
+    .contacts {
       display: grid;
       gap: 14px;
     }
 
-    .list-item {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
+    .compact-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .services,
-    .results {
-      grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-
+    .item,
     .service,
-    .result {
-      padding: 22px;
+    .doc,
+    .contact-link {
+      padding: 18px;
       border-radius: 20px;
-      background: rgba(255,255,255,.66);
+      background: rgba(255,255,255,0.64);
       border: 1px solid var(--line);
       transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
     }
 
+    .item:hover,
     .service:hover,
-    .result:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 34px rgba(60,72,67,.08);
-      border-color: rgba(93,118,107,.18);
+    .doc:hover,
+    .contact-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px rgba(62, 88, 79, 0.08);
+      border-color: rgba(31, 155, 125, 0.16);
+    }
+
+    .item {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .services {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 24px;
     }
 
     .service small,
-    .result small {
+    .doc small {
       display: inline-block;
       margin-bottom: 8px;
-      color: var(--accent-dark);
-      font-weight: 600;
+      color: var(--emerald-dark);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .service p,
+    .doc p {
+      margin-top: 8px;
     }
 
     .docs {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 14px;
-      margin-top: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 24px;
     }
 
     .doc {
-      padding: 18px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
       text-align: center;
-      color: var(--muted);
-      transition: transform var(--speed), box-shadow var(--speed);
     }
 
-    .doc:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 30px rgba(60,72,67,.08);
-    }
-
-    form { display: grid; gap: 12px; }
-
-    label {
-      font-size: .94rem;
+    .guide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       font-weight: 600;
-      color: var(--text);
+      color: var(--emerald-dark);
+      margin-top: 18px;
+      transition: gap var(--speed), color var(--speed);
     }
 
-    input, textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.92);
-      padding: 14px 15px;
-      font: inherit;
-      color: var(--text);
-      outline: none;
-      transition: border-color var(--speed), box-shadow var(--speed), transform var(--speed);
+    .guide-link:hover {
+      gap: 14px;
+      color: var(--emerald);
     }
 
-    textarea { min-height: 120px; resize: vertical; }
-
-    input:focus,
-    textarea:focus {
-      border-color: rgba(93,118,107,.45);
-      box-shadow: 0 0 0 4px rgba(93,118,107,.12);
-      transform: translateY(-1px);
-    }
-
-    .contact-links {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
+    .contacts {
+      margin-top: 20px;
     }
 
     .contact-link {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
-      transition: transform var(--speed), box-shadow var(--speed);
-    }
-
-    .contact-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 26px rgba(60,72,67,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      color: var(--text);
+      font-weight: 500;
     }
 
     .footer {
-      padding: 24px 0 40px;
+      padding: 28px 0 42px;
       color: var(--muted);
-      font-size: .92rem;
+      font-size: 0.92rem;
     }
 
     .footer-inner {
-      padding-top: 18px;
+      padding-top: 20px;
       border-top: 1px solid var(--line);
     }
 
-    @media (max-width: 900px) {
-      .hero-grid,
-      .about-grid,
-      .lead-grid,
-      .contact-grid,
+    @media (max-width: 920px) {
+      .hero,
+      .two-col,
       .services,
-      .results,
-      .docs {
+      .docs,
+      .compact-list {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 700px) {
-      .section { padding: 56px 0; }
+    @media (max-width: 720px) {
+      .section { padding: 58px 0; }
 
       .header-inner {
         min-height: auto;
@@ -293,7 +369,7 @@
       }
 
       .nav { gap: 10px 14px; }
-      .card { padding: 22px; }
+      .card { padding: 24px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -307,187 +383,145 @@
     <div class="container header-inner">
       <a class="brand" href="#top">
         <strong>Имя Фамилия</strong>
-        <span>health coaching, питание, привычки</span>
+        <span>health coaching, питание, устойчивые привычки</span>
       </a>
       <nav class="nav">
-        <a href="#about">Обо мне</a>
+        <a href="#approach">Подход</a>
+        <a href="#base">База</a>
         <a href="#services">Услуги</a>
-        <a href="#contact">Контакты</a>
+        <a href="#contacts">Контакты</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="section">
-      <div class="container hero-grid">
-        <div class="card">
-          <div class="eyebrow">Личная практика</div>
+      <div class="container hero">
+        <div class="card hero-copy">
           <h1>Имя Фамилия</h1>
           <p class="lead">Специалист по health coaching, питанию и устойчивым привычкам.</p>
-          <p class="lead" style="margin-top:12px;">Помогаю перегруженным взрослым и семьям в период изменений выстроить питание, режим и привычки без жёстких схем и инфошума.</p>
-          <div style="margin-top:24px;">
-            <a href="#contact" class="btn">Записаться на консультацию</a>
-          </div>
+          <p class="lead">Помогаю перегруженным взрослым и семьям в период изменений выстроить питание, режим и привычки без жёстких схем и инфошума.</p>
+          <a href="#contacts" class="btn">Записаться на консультацию</a>
         </div>
 
         <div class="card">
-          <h3>С какими запросами я работаю</h3>
-          <div class="list">
-            <div class="list-item">Хаотичное питание</div>
-            <div class="list-item">Постоянная усталость</div>
-            <div class="list-item">Перегрузка и сбитый режим</div>
-            <div class="list-item">Сложно удерживать привычки</div>
-            <div class="list-item">Переходный этап в жизни</div>
-            <div class="list-item">Нужна понятная система</div>
+          <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 18px;">С какими запросами я работаю</h2>
+          <div class="compact-list">
+            <div class="item">Хаотичное питание</div>
+            <div class="item">Постоянная усталость</div>
+            <div class="item">Перегрузка</div>
+            <div class="item">Сбитый режим</div>
+            <div class="item">Сложно удерживать привычки</div>
+            <div class="item">Нужна понятная система</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container about-grid">
+    <section class="section" id="approach">
+      <div class="container two-col">
         <div class="card">
-          <div class="eyebrow">Обо мне</div>
           <h2>Спокойный, структурный подход</h2>
-          <p>Я соединяю науку, педагогику и наставничество. Помогаю встроить изменения в обычную жизнь: работу, семью, усталость, высокий темп.</p>
+          <p>Я соединяю науку, педагогику и наставничество. Помогаю встроить изменения в повседневную жизнь: работу, семью, усталость, высокий темп.</p>
         </div>
 
         <div class="card">
-          <div class="eyebrow">Подход</div>
-          <div class="list">
-            <div class="list-item">Научная опора</div>
-            <div class="list-item">Бережная работа</div>
-            <div class="list-item">Реалистичные шаги</div>
-            <div class="list-item">Устойчивый результат</div>
+          <div class="compact-list">
+            <div class="item">Научная опора</div>
+            <div class="item">Бережная работа</div>
+            <div class="item">Реалистичные шаги</div>
+            <div class="item">Устойчивые привычки</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="qualification">
+    <section class="section" id="base">
       <div class="container">
-        <div class="eyebrow">Образование и квалификация</div>
-        <h2>Профессиональная база</h2>
-        <div class="services" style="margin-top:24px;">
-          <div class="service">
-            <small>Базовое образование</small>
-            <h3>Химик, кандидат химических наук</h3>
+        <div class="card">
+          <h2>Профессиональная база</h2>
+          <div class="services">
+            <div class="service">
+              <small>Базовое образование</small>
+              <h3>Химик, кандидат химических наук</h3>
+            </div>
+            <div class="service">
+              <small>Второе образование</small>
+              <h3>Педагог</h3>
+            </div>
+            <div class="service">
+              <small>Дополнительная подготовка</small>
+              <h3>Пищевые технологии, спортивная нутрициология, health coaching</h3>
+            </div>
+            <div class="service">
+              <small>Повышение квалификации</small>
+              <h3>Сертификаты и обучение</h3>
+            </div>
           </div>
-          <div class="service">
-            <small>Второе образование</small>
-            <h3>Педагог</h3>
+          <div class="docs">
+            <div class="doc"><small>Документ</small><p>Диплом</p></div>
+            <div class="doc"><small>Документ</small><p>Сертификат</p></div>
+            <div class="doc"><small>Документ</small><p>Сертификат</p></div>
+            <div class="doc"><small>Документ</small><p>Удостоверение</p></div>
           </div>
-          <div class="service">
-            <small>Дополнительно</small>
-            <h3>Пищевые технологии, спортивная нутрициология, health coaching</h3>
-          </div>
-          <div class="service">
-            <small>Повышение квалификации</small>
-            <h3>Сертификаты и обучение</h3>
-          </div>
-        </div>
-        <div class="docs">
-          <div class="doc">Диплом</div>
-          <div class="doc">Сертификат</div>
-          <div class="doc">Сертификат</div>
-          <div class="doc">Документ</div>
         </div>
       </div>
     </section>
 
     <section class="section" id="services">
       <div class="container">
-        <div class="eyebrow">Услуги</div>
-        <h2>Форматы работы</h2>
-        <div class="services" style="margin-top:24px;">
-          <article class="service">
-            <small>01</small>
-            <h3>Разовая консультация</h3>
-            <p>Разобрать ситуацию и определить первые шаги.</p>
-          </article>
-          <article class="service">
-            <small>02</small>
-            <h3>Анализ привычек и образа жизни</h3>
-            <p>Увидеть, где теряется устойчивость.</p>
-          </article>
-          <article class="service">
-            <small>03</small>
-            <h3>Анализ пищевого дневника</h3>
-            <p>Понять закономерности и слабые места.</p>
-          </article>
-          <article class="service">
-            <small>04</small>
-            <h3>Сопровождение 8–12 недель</h3>
-            <p>Последовательная работа с обратной связью.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="results">
-      <div class="container">
-        <div class="eyebrow">Результаты</div>
-        <h2>Что меняется</h2>
-        <div class="results" style="margin-top:24px;">
-          <article class="result">
-            <small>01</small>
-            <h3>Больше ясности</h3>
-          </article>
-          <article class="result">
-            <small>02</small>
-            <h3>Меньше хаоса</h3>
-          </article>
-          <article class="result">
-            <small>03</small>
-            <h3>Устойчивее питание</h3>
-          </article>
-          <article class="result">
-            <small>04</small>
-            <h3>Больше ресурса</h3>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="guide">
-      <div class="container lead-grid">
         <div class="card">
-          <div class="eyebrow">Бесплатный материал</div>
-          <h2>Мини-гайд</h2>
-          <p>«Почему привычки не удерживаются в перегруженной жизни»</p>
-        </div>
-        <div class="card">
-          <form>
-            <label for="guide-name">Имя</label>
-            <input id="guide-name" type="text" placeholder="Ваше имя">
-            <label for="guide-email">Email</label>
-            <input id="guide-email" type="email" placeholder="name@example.com">
-            <button class="btn" type="submit">Получить</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container contact-grid">
-        <div class="card">
-          <div class="eyebrow">Контакты</div>
-          <h2>Запись на консультацию</h2>
-          <div class="contact-links">
-            <a class="contact-link" href="https://t.me/username" target="_blank" rel="noopener noreferrer">Telegram — @username</a>
-            <a class="contact-link" href="mailto:hello@example.com">Email — hello@example.com</a>
+          <h2>Формат работы и услуги</h2>
+          <div class="services">
+            <article class="service">
+              <small>01</small>
+              <h3>Разовая консультация</h3>
+              <p>Разобрать ситуацию и определить первые шаги.</p>
+            </article>
+            <article class="service">
+              <small>02</small>
+              <h3>Анализ привычек и образа жизни</h3>
+              <p>Увидеть, где теряется устойчивость.</p>
+            </article>
+            <article class="service">
+              <small>03</small>
+              <h3>Анализ пищевого дневника</h3>
+              <p>Понять закономерности и слабые места.</p>
+            </article>
+            <article class="service">
+              <small>04</small>
+              <h3>Сопровождение 8–12 недель</h3>
+              <p>Последовательная работа с обратной связью.</p>
+            </article>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="materials">
+      <div class="container">
         <div class="card">
-          <form>
-            <label for="name">Имя</label>
-            <input id="name" type="text" placeholder="Ваше имя">
-            <label for="contact">Контакт</label>
-            <input id="contact" type="text" placeholder="Telegram или email">
-            <label for="message">Запрос</label>
-            <textarea id="message" placeholder="Коротко о вашей ситуации"></textarea>
-            <button class="btn" type="submit">Отправить</button>
-          </form>
+          <h2>Бесплатные материалы</h2>
+          <p>Мини-гайд «Почему привычки не удерживаются в перегруженной жизни».</p>
+          <a href="#" class="guide-link">Скачать по ссылке <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="card">
+          <h2>Контакты</h2>
+          <div class="contacts">
+            <a class="contact-link" href="https://t.me/username" target="_blank" rel="noopener noreferrer">
+              <span>Telegram-канал</span>
+              <span>@username</span>
+            </a>
+            <a class="contact-link" href="mailto:hello@example.com">
+              <span>Электронная почта</span>
+              <span>hello@example.com</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
