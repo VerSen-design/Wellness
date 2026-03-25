@@ -1,192 +1,73 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Имя Фамилия — health coaching, питание и устойчивые привычки</title>
-  <meta
-    name="description"
-    content="Личная практика специалиста по health coaching, питанию и устойчивым привычкам. Помощь перегруженным взрослым и семьям в период жизненных изменений — без жёстких схем и инфошума."
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Имя Фамилия — health coaching</title>
   <style>
     :root {
-      --bg: #f7f5f0;
-      --surface: rgba(255, 255, 255, 0.82);
-      --surface-strong: #ffffff;
-      --text: #26312d;
-      --muted: #66736d;
-      --line: rgba(38, 49, 45, 0.1);
-      --accent: #6d8579;
-      --accent-deep: #4f675d;
-      --accent-soft: #dde7df;
-      --sand: #ebe6da;
-      --shadow: 0 18px 40px rgba(59, 74, 68, 0.09);
-      --shadow-soft: 0 10px 30px rgba(59, 74, 68, 0.06);
-      --radius: 24px;
-      --radius-sm: 18px;
-      --container: 1180px;
-      --header-h: 78px;
-      --transition: 0.28s ease;
+      --bg: #f7f5f1;
+      --card: rgba(255,255,255,.82);
+      --text: #25302c;
+      --muted: #64706b;
+      --line: rgba(37,48,44,.08);
+      --accent: #5d766b;
+      --accent-dark: #496056;
+      --shadow: 0 16px 40px rgba(60,72,67,.08);
+      --radius: 22px;
+      --container: 1040px;
+      --speed: .25s ease;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(221, 231, 223, 0.8), transparent 28%),
-        radial-gradient(circle at right 15% top 10%, rgba(235, 230, 218, 0.9), transparent 22%),
-        linear-gradient(180deg, #fbfaf6 0%, var(--bg) 100%);
-      line-height: 1.65;
+      background: linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 72px 0; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    textarea {
-      font: inherit;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 104px 0;
-      scroll-margin-top: calc(var(--header-h) + 18px);
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 44px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border: 1px solid rgba(109, 133, 121, 0.18);
-      background: rgba(255, 255, 255, 0.56);
-      color: var(--accent-deep);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      letter-spacing: 0.01em;
-      margin-bottom: 18px;
-      backdrop-filter: blur(10px);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
-    }
-
-    h1, h2, h3, h4 {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: #1f2825;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 7vw, 5.25rem);
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.15rem);
-      margin-bottom: 16px;
-    }
-
-    h3 {
-      font-size: clamp(1.25rem, 2vw, 1.65rem);
-      margin-bottom: 14px;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .lead {
-      font-size: clamp(1.06rem, 2vw, 1.22rem);
-      max-width: 720px;
-    }
-
-    .site-header {
+    .header {
       position: sticky;
       top: 0;
-      z-index: 30;
-      backdrop-filter: blur(18px);
-      background: rgba(247, 245, 240, 0.72);
-      border-bottom: 1px solid rgba(38, 49, 45, 0.07);
+      z-index: 20;
+      background: rgba(247,245,241,.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
     .header-inner {
-      min-height: var(--header-h);
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
+      gap: 16px;
     }
 
     .brand strong {
+      display: block;
       font-size: 1rem;
-      color: var(--text);
-      white-space: nowrap;
     }
 
-    .brand span {
-      font-size: 0.9rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
+    .brand span,
+    p { color: var(--muted); }
 
     .nav {
       display: flex;
-      align-items: center;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      font-size: .95rem;
     }
 
     .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: color var(--transition), transform var(--transition);
+      transition: color var(--speed), transform var(--speed);
     }
 
     .nav a:hover {
@@ -194,834 +75,290 @@
       transform: translateY(-1px);
     }
 
-    .btn,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
-      cursor: pointer;
-      text-align: center;
-      font-weight: 600;
-      will-change: transform;
+    h1,h2,h3 {
+      margin: 0;
+      font-family: Georgia, serif;
+      line-height: 1.1;
+      letter-spacing: -.02em;
     }
+
+    h1 { font-size: clamp(2.4rem, 7vw, 4.8rem); margin-bottom: 14px; }
+    h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 14px; }
+    h3 { font-size: 1.28rem; margin-bottom: 10px; }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid var(--line);
+      color: var(--accent-dark);
+      font-size: .9rem;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .lead-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      padding: 28px;
+      transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 44px rgba(60,72,67,.11);
+      border-color: rgba(93,118,107,.18);
+    }
+
+    .lead { font-size: 1.08rem; max-width: 680px; }
 
     .btn {
-      background: linear-gradient(180deg, #738c80 0%, var(--accent-deep) 100%);
-      color: #fff;
-      box-shadow: 0 16px 30px rgba(79, 103, 93, 0.18);
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 22px 36px rgba(79, 103, 93, 0.24);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.6);
-      border-color: rgba(38, 49, 45, 0.08);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover,
-    .btn-secondary:focus-visible {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .hero {
-      padding: 54px 0 84px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.9fr;
-      gap: 30px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .glass-card,
-    .card,
-    .service-card,
-    .audience-card,
-    .result-card,
-    .case-card,
-    .contact-card,
-    .faq-item,
-    .lead-card,
-    .step,
-    .qualification-card {
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      backdrop-filter: blur(16px);
-    }
-
-    .hero-card {
-      padding: clamp(28px, 4vw, 56px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -40px -60px auto;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(221, 231, 223, 0.9) 0%, rgba(221, 231, 223, 0.2) 58%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-kicker {
-      font-size: 1.02rem;
-      color: var(--accent-deep);
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .hero-note {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .tag {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(38, 49, 45, 0.08);
-      background: rgba(255, 255, 255, 0.62);
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .glass-card {
-      padding: 28px;
-      min-height: 100%;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .glass-card:hover,
-    .card:hover,
-    .service-card:hover,
-    .audience-card:hover,
-    .result-card:hover,
-    .case-card:hover,
-    .qualification-card:hover,
-    .lead-card:hover,
-    .step:hover,
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 42px rgba(59, 74, 68, 0.12);
-      border-color: rgba(109, 133, 121, 0.18);
-    }
-
-    .metric {
-      display: grid;
-      gap: 18px;
-    }
-
-    .metric-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .metric-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-      font-weight: 700;
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4 {
-      display: grid;
-      gap: 20px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .card,
-    .service-card,
-    .audience-card,
-    .result-card,
-    .case-card,
-    .contact-card,
-    .lead-card,
-    .qualification-card {
-      padding: 28px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .situation-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .situation-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.54);
-      border: 1px solid rgba(38, 49, 45, 0.06);
-    }
-
-    .situation-item span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 9px;
-      flex: 0 0 auto;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .portrait {
-      min-height: 100%;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(160deg, rgba(255,255,255,0.72), rgba(255,255,255,0.38)),
-        radial-gradient(circle at 18% 20%, rgba(221, 231, 223, 0.8), transparent 30%),
-        radial-gradient(circle at 80% 78%, rgba(235, 230, 218, 0.9), transparent 34%),
-        linear-gradient(180deg, #eef2ec 0%, #f6f4ee 100%);
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding: 32px;
-    }
-
-    .portrait::before {
-      content: "";
-      position: absolute;
-      inset: 24px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.55);
-      pointer-events: none;
-    }
-
-    .portrait-card {
-      position: relative;
-      max-width: 360px;
-      padding: 24px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(255,255,255,0.7);
-      border-radius: 22px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
-    }
-
-    .portrait-card strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    .qualification-card {
-      display: grid;
-      gap: 14px;
-    }
-
-    .qualification-card small,
-    .service-meta,
-    .audience-card small,
-    .case-card small,
-    .result-card small {
-      color: var(--accent-deep);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--line);
-      margin: 6px 0;
-    }
-
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .principle {
-      padding: 20px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(38, 49, 45, 0.06);
-      box-shadow: var(--shadow-soft);
-      min-height: 168px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .principle:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 34px rgba(59, 74, 68, 0.08);
-      border-color: rgba(109, 133, 121, 0.2);
-    }
-
-    .principle-index {
-      display: inline-grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .audience-card,
-    .service-card,
-    .result-card,
-    .case-card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .service-card {
-      justify-content: space-between;
-      min-height: 100%;
-    }
-
-    .service-meta {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-    }
-
-    .service-list,
-    .clean-list {
-      display: grid;
-      gap: 10px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .service-list li,
-    .clean-list li {
-      position: relative;
-      padding-left: 22px;
-      color: var(--muted);
-    }
-
-    .service-list li::before,
-    .clean-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .step {
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .step-number {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #7d9589 0%, var(--accent-deep) 100%);
+      min-height: 52px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
       color: #fff;
-      font-weight: 700;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 20px rgba(79, 103, 93, 0.2);
-    }
-
-    .result-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .quote {
-      font-size: 1.04rem;
-      color: var(--text);
-    }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .review {
-      padding: 26px;
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(38, 49, 45, 0.06);
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .review:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 34px rgba(59, 74, 68, 0.08);
-    }
-
-    .review::before {
-      content: "“";
-      display: block;
-      font-family: Georgia, serif;
-      font-size: 3rem;
-      line-height: 1;
-      color: rgba(109, 133, 121, 0.45);
-      margin-bottom: 10px;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-item {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    details {
-      width: 100%;
-    }
-
-    summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 22px 24px;
       font-weight: 600;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      box-shadow: 0 14px 28px rgba(73,96,86,.2);
+      transition: transform var(--speed), box-shadow var(--speed);
+      cursor: pointer;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 32px rgba(73,96,86,.24);
     }
 
-    .faq-answer {
-      padding: 0 24px 24px;
-      color: var(--muted);
-    }
-
-    .faq-icon {
-      flex: 0 0 auto;
-      width: 30px;
-      height: 30px;
-      border-radius: 10px;
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-      display: grid;
-      place-items: center;
-      transition: transform var(--transition), background var(--transition);
-    }
-
-    details[open] .faq-icon {
-      transform: rotate(45deg);
-      background: rgba(109, 133, 121, 0.18);
-    }
-
-    .lead-wrap,
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .lead-card {
-      padding: 32px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.72)),
-        radial-gradient(circle at top left, rgba(221, 231, 223, 0.7), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(235, 230, 218, 0.85), transparent 28%);
-    }
-
-    form {
+    .list,
+    .services,
+    .results {
       display: grid;
       gap: 14px;
     }
 
-    .field {
-      display: grid;
-      gap: 8px;
+    .list-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
     }
+
+    .services,
+    .results {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .service,
+    .result {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.66);
+      border: 1px solid var(--line);
+      transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
+    }
+
+    .service:hover,
+    .result:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 34px rgba(60,72,67,.08);
+      border-color: rgba(93,118,107,.18);
+    }
+
+    .service small,
+    .result small {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .docs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .doc {
+      padding: 18px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      transition: transform var(--speed), box-shadow var(--speed);
+    }
+
+    .doc:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(60,72,67,.08);
+    }
+
+    form { display: grid; gap: 12px; }
 
     label {
-      font-size: 0.94rem;
-      color: var(--text);
+      font-size: .94rem;
       font-weight: 600;
+      color: var(--text);
     }
 
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
-      border: 1px solid rgba(38, 49, 45, 0.1);
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 18px;
-      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.92);
+      padding: 14px 15px;
+      font: inherit;
       color: var(--text);
       outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      transition: border-color var(--speed), box-shadow var(--speed), transform var(--speed);
     }
 
-    textarea {
-      min-height: 134px;
-      resize: vertical;
-    }
+    textarea { min-height: 120px; resize: vertical; }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(109, 133, 121, 0.45);
-      box-shadow: 0 0 0 4px rgba(109, 133, 121, 0.12);
+      border-color: rgba(93,118,107,.45);
+      box-shadow: 0 0 0 4px rgba(93,118,107,.12);
       transform: translateY(-1px);
     }
 
-    .form-note {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .contacts-list {
+    .contact-links {
       display: grid;
-      gap: 14px;
-      margin-top: 6px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .contact-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(38, 49, 45, 0.07);
-      border-radius: 18px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      transition: transform var(--speed), box-shadow var(--speed);
     }
 
     .contact-link:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-soft);
-      border-color: rgba(109, 133, 121, 0.18);
+      box-shadow: 0 16px 26px rgba(60,72,67,.08);
     }
 
-    .site-footer {
-      padding: 28px 0 44px;
+    .footer {
+      padding: 24px 0 40px;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: .92rem;
     }
 
     .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
       padding-top: 18px;
-      border-top: 1px solid rgba(38, 49, 45, 0.08);
-      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @media (max-width: 1100px) {
+    @media (max-width: 900px) {
       .hero-grid,
       .about-grid,
-      .result-wrap,
-      .lead-wrap,
-      .contact-wrap {
+      .lead-grid,
+      .contact-grid,
+      .services,
+      .results,
+      .docs {
         grid-template-columns: 1fr;
-      }
-
-      .grid-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .grid-3,
-      .review-grid,
-      .steps,
-      .principles {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 760px) {
-      :root {
-        --header-h: auto;
-        --radius: 22px;
-      }
-
-      .section {
-        padding: 76px 0;
-      }
+    @media (max-width: 700px) {
+      .section { padding: 56px 0; }
 
       .header-inner {
+        min-height: auto;
         padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        width: 100%;
-        gap: 12px 14px;
-      }
-
-      .nav .btn {
-        width: 100%;
-        margin-top: 4px;
-      }
-
-      .hero {
-        padding-top: 26px;
-      }
-
-      .hero-card,
-      .glass-card,
-      .card,
-      .service-card,
-      .audience-card,
-      .result-card,
-      .case-card,
-      .contact-card,
-      .lead-card,
-      .step,
-      .qualification-card {
-        padding: 22px;
-      }
-
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .review-grid,
-      .steps,
-      .principles {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn,
-      .btn-secondary {
-        width: 100%;
-      }
-
-      .portrait {
-        min-height: 360px;
-        padding: 20px;
-      }
-
-      summary {
-        padding: 18px 18px;
-      }
-
-      .faq-answer {
-        padding: 0 18px 18px;
-      }
-
-      .footer-inner {
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .nav { gap: 10px 14px; }
+      .card { padding: 22px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="header">
     <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="На главный экран">
+      <a class="brand" href="#top">
         <strong>Имя Фамилия</strong>
-        <span>health coaching • питание • устойчивые привычки</span>
+        <span>health coaching, питание, привычки</span>
       </a>
-
-      <nav class="nav" aria-label="Основная навигация">
+      <nav class="nav">
         <a href="#about">Обо мне</a>
-        <a href="#approach">Подход</a>
         <a href="#services">Услуги</a>
-        <a href="#faq">Вопросы</a>
-        <a href="#contact" class="btn">Записаться</a>
+        <a href="#contact">Контакты</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="section">
       <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">Личная практика специалиста</div>
-          <p class="hero-kicker">Специалист по health coaching, питанию и устойчивым привычкам</p>
+        <div class="card">
+          <div class="eyebrow">Личная практика</div>
           <h1>Имя Фамилия</h1>
-          <p class="lead">
-            Помогаю перегруженным взрослым и семьям в период жизненных изменений выстроить питание, режим и привычки без жёстких схем, давления и инфошума.
-          </p>
-
-          <div class="hero-actions">
+          <p class="lead">Специалист по health coaching, питанию и устойчивым привычкам.</p>
+          <p class="lead" style="margin-top:12px;">Помогаю перегруженным взрослым и семьям в период изменений выстроить питание, режим и привычки без жёстких схем и инфошума.</p>
+          <div style="margin-top:24px;">
             <a href="#contact" class="btn">Записаться на консультацию</a>
-            <a href="#approach" class="btn-secondary">Посмотреть, как я работаю</a>
-          </div>
-
-          <div class="hero-note" aria-label="Ключевые ориентиры практики">
-            <div class="tag">Спокойный темп</div>
-            <div class="tag">Научная опора</div>
-            <div class="tag">Изменения, которые можно удержать</div>
           </div>
         </div>
 
-        <div class="hero-side">
-          <div class="glass-card metric">
-            <h3>Когда кажется, что всё уже пробовали</h3>
-            <div class="metric-row">
-              <div class="metric-badge">01</div>
-              <p>Питание становится хаотичным, когда жизнь перегружена и решения приходится принимать на бегу.</p>
-            </div>
-            <div class="metric-row">
-              <div class="metric-badge">02</div>
-              <p>Полезные привычки не удерживаются не из-за слабости, а потому что система не подходит под реальную жизнь.</p>
-            </div>
-            <div class="metric-row">
-              <div class="metric-badge">03</div>
-              <p>Моя задача — не усложнить, а вернуть ясность, структуру и ощущение опоры.</p>
-            </div>
-          </div>
-
-          <div class="glass-card">
-            <h3>С чем можно прийти</h3>
-            <div class="situation-list">
-              <div class="situation-item"><span></span><p>Хаотичное питание, постоянная усталость и ощущение, что на себя не остаётся ресурса.</p></div>
-              <div class="situation-item"><span></span><p>Сложности с режимом и невозможность удерживать полезные привычки дольше нескольких дней.</p></div>
-              <div class="situation-item"><span></span><p>Переходный этап в жизни: смена работы, родительство, восстановление ритма, семейные изменения.</p></div>
-              <div class="situation-item"><span></span><p>Желание выстроить устойчивую систему без диет, стыда и постоянного внутреннего давления.</p></div>
-            </div>
+        <div class="card">
+          <h3>С какими запросами я работаю</h3>
+          <div class="list">
+            <div class="list-item">Хаотичное питание</div>
+            <div class="list-item">Постоянная усталость</div>
+            <div class="list-item">Перегрузка и сбитый режим</div>
+            <div class="list-item">Сложно удерживать привычки</div>
+            <div class="list-item">Переходный этап в жизни</div>
+            <div class="list-item">Нужна понятная система</div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="section" id="about">
-      <div class="container">
-        <div class="section-head">
+      <div class="container about-grid">
+        <div class="card">
           <div class="eyebrow">Обо мне</div>
-          <h2>Спокойная, профессиональная поддержка там, где нужен не ещё один совет, а путь изменений</h2>
-          <p class="lead">
-            Я работаю на пересечении науки, педагогики и наставничества. Не просто даю рекомендации, а помогаю человеку пройти длинный путь изменений так, чтобы новые решения встроились в повседневность и не рассыпались при первой нагрузке.
-          </p>
+          <h2>Спокойный, структурный подход</h2>
+          <p>Я соединяю науку, педагогику и наставничество. Помогаю встроить изменения в обычную жизнь: работу, семью, усталость, высокий темп.</p>
         </div>
 
-        <div class="about-grid">
-          <div class="card">
-            <h3>Профессиональный портрет</h3>
-            <p>
-              В моей работе важны не только знания о питании и привычках, но и умение видеть человека в контексте его жизни: семейной, рабочей, эмоциональной. Поэтому консультация — это не набор универсальных правил, а совместная настройка устойчивой системы, которая подходит именно вам.
-            </p>
-            <div class="divider"></div>
-            <ul class="clean-list">
-              <li>Перевожу сложные знания в понятные и реалистичные шаги.</li>
-              <li>Помогаю удерживать изменения без жёсткого контроля.</li>
-              <li>Работаю бережно, структурно и с уважением к ограничениям реальной жизни.</li>
-            </ul>
-          </div>
-
-          <div class="portrait glass-card">
-            <div class="portrait-card">
-              <strong>Здесь может быть ваше фото</strong>
-              <p>
-                Лучше всего подойдёт светлый, спокойный портрет без излишней постановочности: он поддержит ощущение доверия, ясности и профессиональной опоры.
-              </p>
-            </div>
+        <div class="card">
+          <div class="eyebrow">Подход</div>
+          <div class="list">
+            <div class="list-item">Научная опора</div>
+            <div class="list-item">Бережная работа</div>
+            <div class="list-item">Реалистичные шаги</div>
+            <div class="list-item">Устойчивый результат</div>
           </div>
         </div>
       </div>
@@ -1029,211 +366,59 @@
 
     <section class="section" id="qualification">
       <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Образование и квалификация</div>
-          <h2>Основа практики — сильная академическая база и прикладная подготовка</h2>
-          <p class="lead">
-            Этот блок оформлен так, чтобы вы могли легко добавить точные названия программ, годы обучения, дипломы, сертификаты и ссылки на документы.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <div class="qualification-card">
+        <div class="eyebrow">Образование и квалификация</div>
+        <h2>Профессиональная база</h2>
+        <div class="services" style="margin-top:24px;">
+          <div class="service">
             <small>Базовое образование</small>
             <h3>Химик, кандидат химических наук</h3>
-            <p>Сильная научная подготовка, привычка работать с доказательной базой, анализом данных и аккуратной интерпретацией информации.</p>
           </div>
-
-          <div class="qualification-card">
+          <div class="service">
             <small>Второе образование</small>
             <h3>Педагог</h3>
-            <p>Понимание того, как человек учится новому, проходит через сопротивление, закрепляет навыки и удерживает изменения в долгую.</p>
           </div>
-
-          <div class="qualification-card">
-            <small>Дополнительная подготовка</small>
+          <div class="service">
+            <small>Дополнительно</small>
             <h3>Пищевые технологии, спортивная нутрициология, health coaching</h3>
-            <p>Современные прикладные знания о питании, поведении, режиме и сопровождении изменений в разных жизненных сценариях.</p>
           </div>
-
-          <div class="qualification-card">
-            <small>Сертификаты и повышение квалификации</small>
-            <h3>Документы, курсы, регулярное обновление знаний</h3>
-            <p>Здесь можно разместить дипломы, PDF-документы, логотипы программ или иконки сертификатов в аккуратной визуальной сетке.</p>
+          <div class="service">
+            <small>Повышение квалификации</small>
+            <h3>Сертификаты и обучение</h3>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="approach">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Мой подход</div>
-          <h2>Не идеальная схема на бумаге, а рабочая система в вашей жизни</h2>
-          <p class="lead">
-            В центре работы — устойчивость. Я не строю процесс вокруг контроля и «правильности». Мы ищем решения, которые можно поддерживать в период высокой нагрузки, семейных задач и естественных колебаний ресурса.
-          </p>
-        </div>
-
-        <div class="principles">
-          <article class="principle">
-            <div class="principle-index">01</div>
-            <h3>Без жёстких диет</h3>
-            <p>Без крайностей и постоянного ощущения запрета. Цель — не краткий рывок, а стабильность.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-index">02</div>
-            <h3>Без давления и стыда</h3>
-            <p>Поддержка работает лучше, чем критика. Особенно тогда, когда человек и так перегружен.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-index">03</div>
-            <h3>С опорой на науку</h3>
-            <p>Рекомендации основаны не на трендах, а на знаниях, логике и профессиональной ответственности.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-index">04</div>
-            <h3>С учётом реальной жизни</h3>
-            <p>Работа, дети, дорога, дедлайны, усталость — не помеха для разговора, а часть задачи.</p>
-          </article>
-
-          <article class="principle">
-            <div class="principle-index">05</div>
-            <h3>Через постепенность</h3>
-            <p>Новые привычки внедряются шаг за шагом, чтобы стать опорой, а не временным усилием.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="audience">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Для кого я</div>
-          <h2>Тех, кому нужен не контроль, а внятная система и бережное сопровождение</h2>
-        </div>
-
-        <div class="grid-3">
-          <article class="audience-card">
-            <small>Перегруженные мамы</small>
-            <h3>Когда все силы уходят на организацию жизни семьи</h3>
-            <p>Помогаю вернуть структуру питания и режима без ещё одного списка обязанностей. Ищем решения, которые поддерживают, а не увеличивают нагрузку.</p>
-          </article>
-
-          <article class="audience-card">
-            <small>Взрослые с высокой интеллектуальной нагрузкой</small>
-            <h3>Когда работа требует много внимания, а на базовые вещи не остаётся ресурса</h3>
-            <p>Разбираем хаос, усталость, несобранный режим, переедание или пропуски еды. Строим систему, которая выдерживает сложный график.</p>
-          </article>
-
-          <article class="audience-card">
-            <small>Семьи с подростками в переходный период</small>
-            <h3>Когда важно сохранить контакт, структуру и устойчивые бытовые опоры</h3>
-            <p>Помогаю выстроить более спокойный и реалистичный режим питания и привычек для семьи без лишнего давления и конфликтов.</p>
-          </article>
+        <div class="docs">
+          <div class="doc">Диплом</div>
+          <div class="doc">Сертификат</div>
+          <div class="doc">Сертификат</div>
+          <div class="doc">Документ</div>
         </div>
       </div>
     </section>
 
     <section class="section" id="services">
       <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Услуги</div>
-          <h2>Форматы работы — от одной консультации до сопровождения в период изменений</h2>
-          <p class="lead">
-            Ниже — базовая структура услуг. Вы можете дополнить её стоимостью, длительностью, техническими условиями и конкретным форматом связи.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <article class="service-card">
-            <div>
-              <div class="service-meta">Разовая консультация</div>
-              <h3>Для тех, кому нужна ясность и профессиональный взгляд на ситуацию</h3>
-              <ul class="service-list">
-                <li><strong>Кому подходит:</strong> если хочется разобраться в текущем состоянии и понять, с чего начать.</li>
-                <li><strong>Что входит:</strong> предварительное знакомство с запросом, консультация, первичные рекомендации.</li>
-                <li><strong>Результат:</strong> понятная следующая опора и направление движения.</li>
-              </ul>
-            </div>
-            <a href="#contact" class="btn-secondary">Записаться</a>
+        <div class="eyebrow">Услуги</div>
+        <h2>Форматы работы</h2>
+        <div class="services" style="margin-top:24px;">
+          <article class="service">
+            <small>01</small>
+            <h3>Разовая консультация</h3>
+            <p>Разобрать ситуацию и определить первые шаги.</p>
           </article>
-
-          <article class="service-card">
-            <div>
-              <div class="service-meta">Анализ привычек и образа жизни</div>
-              <h3>Для тех, кто хочет увидеть систему целиком</h3>
-              <ul class="service-list">
-                <li><strong>Кому подходит:</strong> если ощущается хаос и непонятно, где именно слабые места.</li>
-                <li><strong>Что входит:</strong> разбор режима, нагрузки, питания, бытового ритма и факторов срыва.</li>
-                <li><strong>Результат:</strong> карта точек, в которых можно мягко и реалистично менять повседневность.</li>
-              </ul>
-            </div>
-            <a href="#contact" class="btn-secondary">Записаться</a>
+          <article class="service">
+            <small>02</small>
+            <h3>Анализ привычек и образа жизни</h3>
+            <p>Увидеть, где теряется устойчивость.</p>
           </article>
-
-          <article class="service-card">
-            <div>
-              <div class="service-meta">Анализ пищевого дневника</div>
-              <h3>Для тех, кому важно понять реальные закономерности, а не гадать</h3>
-              <ul class="service-list">
-                <li><strong>Кому подходит:</strong> если уже есть записи питания или готовность понаблюдать за собой несколько дней.</li>
-                <li><strong>Что входит:</strong> разбор приёмов пищи, ритма, контекста, дефицитов, перегрузок и повторяющихся сценариев.</li>
-                <li><strong>Результат:</strong> более ясная картина и конкретные ориентиры без самокритики.</li>
-              </ul>
-            </div>
-            <a href="#contact" class="btn-secondary">Записаться</a>
+          <article class="service">
+            <small>03</small>
+            <h3>Анализ пищевого дневника</h3>
+            <p>Понять закономерности и слабые места.</p>
           </article>
-
-          <article class="service-card">
-            <div>
-              <div class="service-meta">Индивидуальное сопровождение 8–12 недель</div>
-              <h3>Для тех, кому нужен не единичный совет, а последовательная работа</h3>
-              <ul class="service-list">
-                <li><strong>Кому подходит:</strong> если задача глубже и важно встроить изменения в реальный образ жизни.</li>
-                <li><strong>Что входит:</strong> стартовая диагностика, план работы, регулярная обратная связь, корректировка шагов.</li>
-                <li><strong>Результат:</strong> более устойчивые привычки, понятная система и ощущение внутренней опоры.</li>
-              </ul>
-            </div>
-            <a href="#contact" class="btn-secondary">Записаться</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Как проходит работа</div>
-          <h2>Простой путь без лишней сложности</h2>
-        </div>
-
-        <div class="steps">
-          <article class="step">
-            <div class="step-number">1</div>
-            <h3>Заявка</h3>
-            <p>Вы оставляете сообщение через форму или удобный канал связи.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">2</div>
-            <h3>Уточнение запроса</h3>
-            <p>Мы коротко проясняем ваш контекст, задачи и подбираем подходящий формат.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">3</div>
-            <h3>Консультация или старт сопровождения</h3>
-            <p>Начинаем с понятной отправной точки и реалистичных шагов.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">4</div>
-            <h3>Работа по плану</h3>
-            <p>Двигаемся постепенно, с обратной связью, корректировкой и вниманием к вашей жизни.</p>
+          <article class="service">
+            <small>04</small>
+            <h3>Сопровождение 8–12 недель</h3>
+            <p>Последовательная работа с обратной связью.</p>
           </article>
         </div>
       </div>
@@ -1241,260 +426,76 @@
 
     <section class="section" id="results">
       <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Результаты работы</div>
-          <h2>Не обещания «новой жизни за неделю», а изменения, которые ощущаются в повседневности</h2>
-        </div>
-
-        <div class="result-wrap">
-          <div class="grid-2">
-            <article class="result-card">
-              <small>Эффект 01</small>
-              <h3>Больше ясности</h3>
-              <p>Появляется понимание, что именно происходит сейчас и на что действительно стоит влиять.</p>
-            </article>
-            <article class="result-card">
-              <small>Эффект 02</small>
-              <h3>Меньше хаоса</h3>
-              <p>Питание, режим и бытовые решения становятся более предсказуемыми и устойчивыми.</p>
-            </article>
-            <article class="result-card">
-              <small>Эффект 03</small>
-              <h3>Устойчивее питание и режим</h3>
-              <p>Без качелей между «идеально» и «совсем никак», с большей внутренней согласованностью.</p>
-            </article>
-            <article class="result-card">
-              <small>Эффект 04</small>
-              <h3>Больше ресурса и опоры</h3>
-              <p>Изменения перестают ощущаться как дополнительный груз и начинают поддерживать жизнь.</p>
-            </article>
-          </div>
-
-          <div class="grid-1">
-            <article class="case-card">
-              <small>Кейс 1</small>
-              <h3>Специалистка с высокой нагрузкой и нерегулярным питанием</h3>
-              <p class="quote">Вместо попыток «взять себя в руки» мы собрали рабочую структуру дня. Через несколько недель исчезли длинные провалы без еды, снизился вечерний хаос, стало легче удерживать режим.</p>
-            </article>
-            <article class="case-card" style="margin-top: 20px;">
-              <small>Кейс 2</small>
-              <h3>Мама в период сильной перегрузки</h3>
-              <p class="quote">Работа началась не с идеального меню, а с уменьшения количества решений. Это помогло вернуть предсказуемость, снизить усталость от быта и постепенно встроить поддерживающие привычки.</p>
-            </article>
-            <article class="case-card" style="margin-top: 20px;">
-              <small>Кейс 3</small>
-              <h3>Семья с подростком в переходном возрасте</h3>
-              <p class="quote">Фокус сместился с контроля на устойчивые семейные опоры: ритм, доступные сценарии еды и более спокойные договорённости. Это снизило напряжение и добавило ясности всем участникам.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="reviews">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Отзывы</div>
-          <h2>Что особенно отмечают клиенты</h2>
-        </div>
-
-        <div class="review-grid">
-          <article class="review">
-            <p>Мне было важно, что со мной говорили спокойно и по делу. После консультации не появилось чувство, что я снова «не справляюсь» — наоборот, стало понятно, как действовать без перегруза.</p>
+        <div class="eyebrow">Результаты</div>
+        <h2>Что меняется</h2>
+        <div class="results" style="margin-top:24px;">
+          <article class="result">
+            <small>01</small>
+            <h3>Больше ясности</h3>
           </article>
-          <article class="review">
-            <p>Очень ценю системность. Мы не пытались исправить всё сразу, а шаг за шагом собрали работающую структуру, которую я действительно смогла удержать.</p>
+          <article class="result">
+            <small>02</small>
+            <h3>Меньше хаоса</h3>
           </article>
-          <article class="review">
-            <p>Поддержка была бережной и профессиональной. Мне понравилось, что рекомендации учитывали реальную жизнь, а не идеальные условия из интернета.</p>
+          <article class="result">
+            <small>03</small>
+            <h3>Устойчивее питание</h3>
+          </article>
+          <article class="result">
+            <small>04</small>
+            <h3>Больше ресурса</h3>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Частые вопросы</div>
-          <h2>Коротко о формате работы</h2>
+    <section class="section" id="guide">
+      <div class="container lead-grid">
+        <div class="card">
+          <div class="eyebrow">Бесплатный материал</div>
+          <h2>Мини-гайд</h2>
+          <p>«Почему привычки не удерживаются в перегруженной жизни»</p>
         </div>
-
-        <div class="faq-list">
-          <div class="faq-item">
-            <details>
-              <summary>
-                В каком формате проходят консультации?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                Консультации можно проводить онлайн. Точный формат — видеосвязь, аудио или сопровождение в переписке — вы можете уточнить и адаптировать под свой рабочий процесс.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                Можно ли работать полностью онлайн?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                Да. Для большинства запросов онлайн-формат удобен, бережёт время и хорошо подходит людям с высокой занятостью и семьям с плотным графиком.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                Что даёт сопровождение, кроме одной консультации?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                Сопровождение помогает не только понять, что делать, но и пройти этап внедрения: скорректировать план, выдержать сложные недели и удержать новые привычки в реальной жизни.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                Обязательно ли вести пищевой дневник?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                Не всегда. Дневник — это инструмент наблюдения, а не контроля. Он используется тогда, когда помогает увидеть закономерности и сделать работу точнее.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                Вы составляете меню?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                При необходимости можно обсуждать варианты структуры питания и удобные сценарии на день или неделю. Обычно фокус не на жёстком меню, а на системе, которую реально поддерживать.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                Сколько длится работа?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                Это зависит от запроса. Иногда достаточно одной консультации, а иногда оптимальнее сопровождение на 8–12 недель, чтобы изменения успели закрепиться.
-              </div>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>
-                С чего лучше начать?
-                <span class="faq-icon">+</span>
-              </summary>
-              <div class="faq-answer">
-                С короткого сообщения о вашей ситуации. Этого достаточно, чтобы понять, какой формат будет самым уместным и не перегрузит вас лишними шагами.
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="lead-magnet">
-      <div class="container lead-wrap">
-        <div class="lead-card">
-          <div class="eyebrow">Бесплатный полезный материал</div>
-          <h2>Мини-гайд: почему привычки не удерживаются в перегруженной жизни</h2>
-          <p class="lead" style="max-width: 100%; margin-bottom: 18px;">
-            Спокойный и практичный материал о том, почему полезные изменения часто срываются не из-за слабой мотивации, а из-за перегрузки, неподходящей системы и слишком большого числа решений.
-          </p>
-          <ul class="clean-list">
-            <li>Поймёте, что именно мешает удерживать новые привычки.</li>
-            <li>Увидите, с каких шагов лучше начинать в период высокой нагрузки.</li>
-            <li>Получите мягкую, реалистичную основу для первых изменений.</li>
-          </ul>
-        </div>
-
-        <div class="contact-card">
-          <h3>Получить материал</h3>
+        <div class="card">
           <form>
-            <div class="field">
-              <label for="lead-name">Имя</label>
-              <input id="lead-name" name="lead-name" type="text" placeholder="Как к вам обращаться" />
-            </div>
-            <div class="field">
-              <label for="lead-email">Email</label>
-              <input id="lead-email" name="lead-email" type="email" placeholder="name@example.com" />
-            </div>
-            <button class="btn" type="submit">Получить мини-гайд</button>
-            <p class="form-note">Текст кнопки и сценарий отправки можно подключить к Tilda Forms, Telegram-боту, email-сервису или CRM.</p>
+            <label for="guide-name">Имя</label>
+            <input id="guide-name" type="text" placeholder="Ваше имя">
+            <label for="guide-email">Email</label>
+            <input id="guide-email" type="email" placeholder="name@example.com">
+            <button class="btn" type="submit">Получить</button>
           </form>
         </div>
       </div>
     </section>
 
     <section class="section" id="contact">
-      <div class="container contact-wrap">
-        <div class="contact-card">
-          <div class="eyebrow">Контакты и запись</div>
-          <h2>Можно начать с короткого сообщения</h2>
-          <p class="lead" style="max-width: 100%; margin-bottom: 20px;">
-            Напишите пару строк о своей ситуации, и мы спокойно определим, какой формат работы будет уместен именно сейчас.
-          </p>
-
-          <div class="contacts-list">
-            <a class="contact-link" href="https://t.me/username" target="_blank" rel="noopener noreferrer">
-              <span><strong>Telegram</strong><br><span style="color: var(--muted);">@username</span></span>
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a class="contact-link" href="mailto:hello@example.com">
-              <span><strong>Email</strong><br><span style="color: var(--muted);">hello@example.com</span></span>
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a class="contact-link" href="#contact-form">
-              <span><strong>Форма заявки</strong><br><span style="color: var(--muted);">Заполнить прямо на сайте</span></span>
-              <span aria-hidden="true">↓</span>
-            </a>
+      <div class="container contact-grid">
+        <div class="card">
+          <div class="eyebrow">Контакты</div>
+          <h2>Запись на консультацию</h2>
+          <div class="contact-links">
+            <a class="contact-link" href="https://t.me/username" target="_blank" rel="noopener noreferrer">Telegram — @username</a>
+            <a class="contact-link" href="mailto:hello@example.com">Email — hello@example.com</a>
           </div>
         </div>
-
-        <div class="contact-card" id="contact-form">
-          <h3>Записаться на консультацию</h3>
+        <div class="card">
           <form>
-            <div class="field">
-              <label for="name">Имя</label>
-              <input id="name" name="name" type="text" placeholder="Ваше имя" />
-            </div>
-
-            <div class="field">
-              <label for="contact-method">Как с вами связаться</label>
-              <input id="contact-method" name="contact-method" type="text" placeholder="Telegram, email или телефон" />
-            </div>
-
-            <div class="field">
-              <label for="message">Коротко о запросе</label>
-              <textarea id="message" name="message" placeholder="Например: чувствую постоянную усталость, режим питания распался, хочу выстроить устойчивую систему без жёстких ограничений"></textarea>
-            </div>
-
-            <button class="btn" type="submit">Записаться на консультацию</button>
-            <p class="form-note">Форма — демонстрационная. Для рабочего сайта подключите обработчик формы, политику конфиденциальности и страницу благодарности.</p>
+            <label for="name">Имя</label>
+            <input id="name" type="text" placeholder="Ваше имя">
+            <label for="contact">Контакт</label>
+            <input id="contact" type="text" placeholder="Telegram или email">
+            <label for="message">Запрос</label>
+            <textarea id="message" placeholder="Коротко о вашей ситуации"></textarea>
+            <button class="btn" type="submit">Отправить</button>
           </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container footer-inner">
-      <p>© Имя Фамилия, личная практика по health coaching, питанию и устойчивым привычкам</p>
-      <a href="#top" class="btn-secondary">Наверх</a>
+      © Имя Фамилия — health coaching, питание, устойчивые привычки
     </div>
   </footer>
 </body>
